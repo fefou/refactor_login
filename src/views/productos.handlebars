@@ -1,0 +1,38 @@
+<h2>PRODUCTOS</h2>
+<hr>
+
+<script src="socket.io/socket.io.js"></script>
+<script src="js/ws.js"></script>
+
+{{#if mensajeBienvenida}}
+<div style="color: green;">{{mensajeBienvenida}}</div>
+{{/if}}
+
+<div>
+  {{#each products}}
+  <p><a href="/realtimeproducts/{{this._id}}">{{this.title}}</a></p> <!-- Link al producto -->
+  <strong>
+    <p>{{this.price}}</p>
+  </strong>
+  <form action="/carts/65779c158beceb4b2d645629/products/{{this._id}}" method="post">
+    <input type="number" name="quantity" min="1" value="1">
+    <button type="submit">Agregar al carrito</button>
+  </form>
+  <hr>
+  {{/each}}
+</div>
+
+
+<a href="/realtimeproducts/?pagina=1&limit={{limit}}&category={{category}}&sort={{sort}}">Pág.1</a>
+
+{{#if hasPrevPage}}
+<a href="/realtimeproducts/?pagina={{prevPage}}&limit={{limit}}&category={{category}}&sort={{sort}}">Pág.Ant.</a>
+{{else}} <span>Pág.Ant.</span>
+{{/if}}
+
+{{#if hasNextPage}}
+<a
+  href="/realtimeproducts/?pagina={{nextPage}}&limit={{limit}}&category={{category}}&sort={{sort}}">Pág.Sig.</a>{{else}}<span>Pág.Sig.</span>
+{{/if}}
+
+<a href="/realtimeproducts/?pagina={{totalPages}}&limit={{limit}}&category={{category}}&sort={{sort}}">Pág.Final</a>

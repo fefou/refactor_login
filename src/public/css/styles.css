@@ -1,0 +1,21 @@
+#mensajes{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #000;
+    overflow: auto;
+    height: 400px;
+    background-color: cadetblue;
+}
+
+.mensaje{
+    border: 1px solid #444;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: wheat;
+    display: inline-block;
+    margin-top: 5px;
+}
+

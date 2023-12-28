@@ -1,0 +1,19 @@
+<h2>CARRITOS</h2>
+<hr>
+<div>
+    {{#each carts}}   
+        <p>Id: {{this._id}}</p> 
+        <p>Productos:</p>
+        <ul>
+            {{#each this.products}}
+                <li>
+                    {{!-- Acceder a las propiedades del objeto product --}}
+                    Nombre: {{this.product.title}}<br>
+                    Cantidad: {{this.quantity}}
+                </li>
+            {{/each}}
+        </ul>
+        <hr>
+    {{/each}}
+</div>
+

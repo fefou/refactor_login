@@ -14,26 +14,34 @@ import sessions from 'express-session'
 import mongoStore from 'connect-mongo'
 import { router as sessionRouter } from './routes/sessionRouter.js'
 
+import { inicializarPassport } from './config/config.passport.js'
+import passport from 'passport';
+
 const productos = pm.getProducts()
 const app = express()
 const port = 3000
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+
 app.use(express.static(path.join(__dirname, '/public')))
 
 app.use(sessions({
-    secret:"CoderCoder",
+    secret: "CoderCoder",
     resave: true, saveUninitialized: true,
     store: mongoStore.create(
-        { 
+        {
             mongoUrl: 'mongodb+srv://ffedecairo:CoderCoder@cluster0.uazzwoe.mongodb.net/?retryWrites=true&w=majority',
-            mongoOptions:{dbName: 'ecommerce'},
+            mongoOptions: { dbName: 'ecommerce' },
             ttl: 3600
 
         })
 }))
 
+inicializarPassport()
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.engine('handlebars', engine())
 app.set('view engine', 'handlebars')
